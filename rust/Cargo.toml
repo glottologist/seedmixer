@@ -1,0 +1,51 @@
+[package]
+name = "seedmixer"
+version = "0.3.0"
+edition = "2021"
+authors = ["Jason Ridgway-Taylor <jason@glottologist.co.uk>"]
+description = "A BIP-39 seed phrase mixer and encrypter"
+repository = "https://github.com/glottologist/seedmixer.git"
+#include = [ "src/data/*", "**/*.rs","Cargo.toml"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "seedmixer"
+path = "src/bin/seedmixer.rs"
+
+[dependencies]
+artem = "2.0.6"
+clap = { version = "4.1.0", features = ["derive"]}
+colored = "2.1.0"
+derive_more = "0.99"
+ecies = "0.2.7"
+figlet-rs = "0.1.5"
+file_shred = "1.1.3"
+hex = "0.4.3"
+image = "=0.24.9"
+indexmap = "2.2.6"
+num-bigint = { version = "0.4.6", features = ["rand", "serde"] }
+num-modular = "0.6.1"
+num-traits = "0.2.19"
+once_cell = "1.20.2"
+openssl = { version = "0.10.68", features = ["vendored"] }
+proptest = "1.4.0"
+rand = "0.8.5"
+secp256k1 = { version = "0.30.0", features = ["global-context","rand","serde","std"] }
+serde = { version = "1.0.216", features = ["derive"] }
+serde_derive = "1.0.216"
+serde_json = "1.0.133"
+sha2 = "0.10.8"
+sha256 = "1.5.0"
+test-case = "3.3.1"
+thiserror = "2.0.6"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+
+[dev-dependencies]
+rand = "0.8.5"
+tempfile = "3.14.0"
+uuid = {version="1.11.0",features=["v4","fast-rng"]}

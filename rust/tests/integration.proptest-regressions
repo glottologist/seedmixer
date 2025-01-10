@@ -1,0 +1,9 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 40e2b832fead75eab33d06abe648ed23d49e5f6e7ac66f7bf76dc3081d9c72d1 # shrinks to lang = "en", pin = Pin([0]), total_shares = 6, threshold = 1
+cc 71aa0b9d95c7bfaa2a348967d60aecc109c1a686549f654cd9738f1e702c9e77 # shrinks to lang = "de", pin = Pin([326])
+cc 536f30c25f04d1d7f5d952b1829016fc08ab3d23114be6d7dc2e1f90666c3fb2 # shrinks to lang = "en", pin = Pin([1, 6, 3, 6])

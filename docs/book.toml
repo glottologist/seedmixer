@@ -1,0 +1,42 @@
+[book]
+authors = ["Jason Ridgway-Taylor"]
+language = "en"
+multilingual = false
+src = "src"
+title = "SeedMixer Documentation"
+
+[build]
+extra-watch-dirs = ["po"]
+
+[preprocessor.gettext]
+after = ["links"]
+
+[output.html]
+mathjax-support = true
+git-repository-url = "https://github.com/glottologist/seedmixer"
+curly-quotes = true
+additional-js = ["theme/speaker-notes.js"]
+additional-css = [
+  "theme/css/svgbob.css",
+  "theme/css/speaker-notes.css",
+  "theme/css/language-picker.css",
+  "theme/css/rtl.css",
+]
+
+
+[output.html.playground]
+editable = true
+line-numbers = true
+
+[output.html.search]
+limit-results = 20
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 2
+boost-paragraph = 1
+expand = true
+heading-split-level = 2
+
+[output.html.fold]
+enable = true
+level = 0

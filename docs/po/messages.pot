@@ -1,0 +1,46 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Mixer Documentation\n"
+"POT-Creation-Date: 2023-12-07T14:40:54+08:00\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/SUMMARY.md:2
+msgid "Welcome to Mixer"
+msgstr ""
+
+#: src/SUMMARY.md:3
+#: src/1_getting_started.md:1
+msgid "Getting Started"
+msgstr ""
+
+#: src/index.md:1
+#: src/1_getting_started.md:3
+msgid "![Mixer Logo](./assets/Mixer-med.png)"
+msgstr ""
+
+#: src/index.md:3
+msgid "Mixer Documentation"
+msgstr ""
+
+#: src/index.md:5
+#: src/1_getting_started.md:5
+msgid ""
+"Mixer is a BIP-39 command line based Mnemonic (Seed) splitter and encrypter. "
+"It is designed to be run offline (i.e. on an air-gapped host)."
+msgstr ""
+
+#: src/1_getting_started.md:7
+msgid ""
+"In its simplest mode, Mixer will create Shamir shares of an original BIP-39 "
+"seed phrase and encrypt each share with a different key to allow secure "
+"storage."
+msgstr ""
+

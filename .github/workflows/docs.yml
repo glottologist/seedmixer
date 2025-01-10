@@ -1,0 +1,68 @@
+name: Documentation
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"
+    paths:
+      - "docs"
+
+env:
+  CARGO_TERM_COLOR: always
+  LANGUAGES: cs_CZ en_GB es_ES fr_FR it_IT ja_JP ko_KR pt_PT zh_CN zh_TW
+
+defaults:
+  run:
+    working-directory: ./docs
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      deployments: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Gettext
+        run: sudo apt install gettext
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libssl-dev \
+            pkg-config
+
+          export PKG_CONFIG_ALLOW_CROSS=1
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.5
+
+      - name: Install mdbook
+        env:
+          SCCACHE_GHA_ENABLED: "true"
+          RUSTC_WRAPPER: "sccache"
+        run: cargo install mdbook --locked --version 0.4.35
+        shell: bash
+
+      - name: Build Docs in English
+        env:
+          SCCACHE_GHA_ENABLED: "true"
+          RUSTC_WRAPPER: "sccache"
+        run: mdbook build -d book
+
+      - name: Deploy to Netlify
+        uses: jsmrcaga/action-netlify-deploy@v1.1.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          build_directory: ./docs/book
+          NETLIFY_DEPLOY_TO_PROD: true

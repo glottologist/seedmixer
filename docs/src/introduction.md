@@ -1,12 +1,28 @@
-# SeedMixer ![SeedMixer Logo](./docs/src/assets/Mixer-med.png)
+![SeedMixer Logo](./assets/Mixer-med.png)
 
-SeedMixer is a command line based Mnemonic (Seed) splitter and encrypter. It is designed to be run offline (i.e. on an air-gapped host).
+# SeedMixer Documentation
 
-SeedMixer will obfuscate the original BIP-39 seed phrase and create Shamir shares (N of M) of the phrase and then, optionally, encrypt each share to allow secure storage.
+SeedMixer is a BIP-39 command line based Mnemonic (Seed) splitter and encrypter. It is designed to be run offline (i.e. on an air-gapped host). The resulting shares can then be distributed separately to different locations (online, media etc) to maintain security and redundancy.
 
-## Usage
+> Warning: While SeedMixer provides a good security solution (better than a single seed phrase stored somewhere), one should always take the upmost care not to have the threshold number of shares in easily accessible locations (i.e. all on the same usb stick).
 
-Please see [documentation](https://seedmixer.glottologist.co.uk) for usage.
+The seed mixer works with three security layers:
+
+- Obfuscation
+- Shamir Sharing
+- Encryption (optional)
+
+## Obfuscation
+
+The obfuscation is the first step, and whilst it is defintely not secure on its own, it provides and additional layer of complexity to anyone trying to decode the seed. The obfuscation process is a little like a Caeser cipher for the seed phrase. A deeper dive is [here](./methods/obfuscation.md)
+
+## Shamir Sharing
+
+Shamir sharing is the core of the tool. The seed is split into a number of shares (each share being unintelligeble) and to recover the original seed a number of these (but not all) are required. This ensures information theoretic security for the seed. A deeper dive is [here](./methods/shamir.md)
+
+## Encryption (optional)
+
+An optional third layer of security is attained by encrypting the share data within the share file. This can be done with either a generated address or a memorable pass phrase. A deeper dive is [here](./methods/encryption.md)
 
 # Security Recommendations
 
@@ -24,10 +40,6 @@ To use seedmixer securely, we urge you to follow the following recommendations:
 
 This software is free to use, however, if you find it useful and want to give something back then coffees are greatly received.
 
-<a href="https://www.buymeacoffee.com/glottologist"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=glottologist&button_colour=5F7FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00" /></a>
-
-## Crypto coffee
-
 | Chain    | Address alias     | Address |
 | -------- | ----------------- | ------- |
 | Ethereum | glottologist.eth  |         |
@@ -40,29 +52,19 @@ This software (the “Software”) is provided on an “AS IS” and “AS AVAIL
 
 By using this Software, you expressly acknowledge and agree that:
 
-## No Warranty
-
+No Warranty
 We do not warrant or guarantee the operation of the Software or that it will be uninterrupted, timely, secure, or error-free. Any use of the Software is at your own risk.
 
-## Loss of Seed Phrase
-
+Loss of Seed Phrase
 You are solely responsible for securely storing and backing up any generated or split seed phrases, mnemonics, and cryptographic keys. This includes not verifiying the seed phrase is recoverable at point of usage. We do not accept liability for any damage, loss of data, or financial loss arising from the loss or mismanagement of seed phrases.
 
-## Loss of Funds
-
+Loss of Funds
 Any use of this Software for cryptocurrency storage or management is done at your own discretion and risk. We will not be held responsible for any direct, indirect, consequential, or incidental loss or damages that may occur, including but not limited to loss of funds due to forgotten or misplaced seed phrases.
 
-## Use at Your Own Risk
-
+Use at Your Own Risk
 You are advised to take all necessary precautions and apply best practices, including but not limited to secure backups, offline storage, and personal due diligence before and after using the Software.
 
-## No Liability for Damages
-
+No Liability for Damages
 Under no circumstances shall We be liable for any direct, indirect, special, incidental, or consequential damages, whether in contract, tort, or otherwise, arising from the use of or inability to use the Software.
 
 By installing, accessing, or otherwise using the Software, you acknowledge that you have read, understood, and agree to be bound by this Disclaimer. If you do not agree, do not install, access, or use the Software.
-
-![](https://komarev.com/ghpvc/?username=glottologist&style=flat-square&label=Views)
-![](https://badges.pufler.dev/visits/glottologist/seedmixer?color=black&logo=github&style=flat-square)
-![Last updated](https://img.shields.io/github/last-commit/glottologist/seedmixer/master?label=Last%20updated&style=flat)
-![](https://github.com/glottologist/seedmixer/commits)

@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 2c09cda3ddb5d3895092d6129135989350083f084a54353e1398d660e0478178 # shrinks to pin = Pin([1, 1, 1, 1]), seed = UniqueVec { inner: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2048] }
