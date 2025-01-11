@@ -28,11 +28,11 @@ This software is free to use, however, if you find it useful and want to give so
 
 ## Crypto coffee
 
-| Chain    | Address alias     | Address |
-| -------- | ----------------- | ------- |
-| Ethereum | glottologist.eth  |         |
-| Solana   | glottologist.sol  |         |
-| Cosmos   | glottologist.atom |         |
+| Chain   | Address |
+| -------- | ------- |
+| Ethereum | 0x31A9431e27760628bEbB3f19a09f5ea5366b54A3 |
+| Solana   | 7SUpcwHZ4EoTFPFoys5DUEVmWA31uZpeeUVcthdah9hk       |
+| Cosmos   | cosmos1ksy92rpu0u5sh663n36n9mqceyzhzzms6radt5         |
 
 # Disclaimer
 
