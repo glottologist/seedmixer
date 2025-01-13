@@ -6,6 +6,9 @@ on:
       - "rust"
     tags:
       - "v*.*.*"
+permissions:
+  contents: write
+  packages: write
 
 env:
   PROJECT_NAME: seedmixer
