@@ -14,7 +14,7 @@ The seed mixer works with three security layers:
 
 ## Obfuscation
 
-The obfuscation is the first step, and whilst it is defintely not secure on its own, it provides and additional layer of complexity to anyone trying to decode the seed. The obfuscation process is a little like a Caeser cipher for the seed phrase. A deeper dive is [here](./methods/obfuscation.md)
+The obfuscation is the first step, and whilst it is defintely not secure on its own, it provides an additional layer of complexity to anyone trying to decode the seed. The obfuscation process is a little like a Caeser cipher for the seed phrase. A deeper dive is [here](./methods/obfuscation.md)
 
 ## Shamir Sharing
 

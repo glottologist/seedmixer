@@ -39,6 +39,6 @@
 
 # Methods
 
-- [Obfuscation](./methods/obfusction.md)
+- [Obfuscation](./methods/obfuscation.md)
 - [Shamir Sharing](./methods/shamir.md)
 - [Encryption](./methods/encryption.md)
