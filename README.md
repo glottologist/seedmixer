@@ -1,5 +1,7 @@
 # SeedMixer ![SeedMixer Logo](./docs/src/assets/Mixer-med.png)
 
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
 SeedMixer is a command line based Mnemonic (Seed) splitter and encrypter. It is designed to be run offline (i.e. on an air-gapped host).
 
 SeedMixer will obfuscate the original BIP-39 seed phrase and create Shamir shares (N of M) of the phrase and then, optionally, encrypt each share to allow secure storage.
@@ -28,11 +30,11 @@ This software is free to use, however, if you find it useful and want to give so
 
 ## Crypto coffee
 
-| Chain   | Address |
-| -------- | ------- |
-| Ethereum | 0x31A9431e27760628bEbB3f19a09f5ea5366b54A3 |
-| Solana   | 7SUpcwHZ4EoTFPFoys5DUEVmWA31uZpeeUVcthdah9hk       |
-| Cosmos   | cosmos1ksy92rpu0u5sh663n36n9mqceyzhzzms6radt5         |
+| Chain    | Address                                       |
+| -------- | --------------------------------------------- |
+| Ethereum | 0x31A9431e27760628bEbB3f19a09f5ea5366b54A3    |
+| Solana   | 7SUpcwHZ4EoTFPFoys5DUEVmWA31uZpeeUVcthdah9hk  |
+| Cosmos   | cosmos1ksy92rpu0u5sh663n36n9mqceyzhzzms6radt5 |
 
 # Disclaimer
 
