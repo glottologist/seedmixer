@@ -27,4 +27,4 @@ Please follow the instuctions to burn to disc.
 
 ## Usage
 
-Once burned to disc/stick you can boot tails from the bios menu on any machine and follow the initial live cd setup to specify language settings etc. From there, open a terminal window from the `Applications -> Utilities` menu and you will have access to the seedmixer by running the commands in the [usage](../usage/usage.md) documentation.
+Once burned to disc/stick you can boot tails from the Bios menu on any machine and follow the initial live cd setup to specify language settings etc. From there, open a terminal window from the `Applications -> Utilities` menu and you will have access to the seedmixer by running the commands in the [usage](../usage/usage.md) documentation.
