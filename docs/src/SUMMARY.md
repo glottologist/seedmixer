@@ -42,3 +42,10 @@
 - [Obfuscation](./methods/obfuscation.md)
 - [Shamir Sharing](./methods/shamir.md)
 - [Encryption](./methods/encryption.md)
+
+# Example Videos
+
+- [Installation](./videos/installation.md)
+- [Usage](./videos/usage.md)
+ 
+

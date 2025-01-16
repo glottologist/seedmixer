@@ -10,7 +10,7 @@ shasum -a 256 seedmixer_<architecture>_<version>
 
 This should match the hash that is in the `seedmixer_<architecture>_<version>.sha256` file.
 
-### Linux/MacOS
+### Linux/MacOS/WSL
 
 Open a terminal and use `curl`:
 
@@ -24,9 +24,7 @@ You will need to make the binary executable:
 sudo chmod +x seedmixer
 ```
 
-### Windows
-
-
+### Windows (Native)
 
 ## Usage
 
