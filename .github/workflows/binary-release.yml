@@ -30,9 +30,6 @@ jobs:
           mv target/${{ env.WINDOWS_TARGET }}/release/${{env.PROJECT_NAME}}.exe ${{env.PROJECT_NAME}}_${{ env.WINDOWS_TARGET }}_${{ github.ref_name }}.exe
 
       - name: Generate Binary Hash
-        env:
-          SCCACHE_GHA_ENABLED: "true"
-          RUSTC_WRAPPER: "sccache"
         run: |
           shasum -a 256 "${{ github.workspace }}/rust/${{env.PROJECT_NAME}}_${{ env.WINDOWS_TARGET }}_${{ github.ref_name }}.exe" >> "${{ github.workspace }}/rust/${{env.PROJECT_NAME}}_${{ env.WINDOWS_TARGET }}_${{ github.ref_name }}.exe.sha256"
 
@@ -102,17 +99,11 @@ jobs:
         uses: mozilla-actions/sccache-action@v0.0.5
 
       - name: Build Binary
-        env:
-          SCCACHE_GHA_ENABLED: "true"
-          RUSTC_WRAPPER: "sccache"
         run: |
           cargo build --release --target "${{matrix.target}}"
           mv target/${{matrix.target}}/release/${{env.PROJECT_NAME}} ${{env.PROJECT_NAME}}_${{matrix.target}}_${{ github.ref_name }}
 
       - name: Generate Binary Hash
-        env:
-          SCCACHE_GHA_ENABLED: "true"
-          RUSTC_WRAPPER: "sccache"
         run: |
           shasum -a 256 "${{ github.workspace }}/rust/${{env.PROJECT_NAME}}_${{matrix.target}}_${{ github.ref_name }}" >> "${{ github.workspace }}/rust/${{env.PROJECT_NAME}}_${{matrix.target}}_${{ github.ref_name }}.sha256"
 
