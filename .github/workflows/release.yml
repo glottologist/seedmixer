@@ -12,7 +12,7 @@ permissions:
 
 env:
   PROJECT_NAME: seedmixer
-  TAILS_VERSION: "6.11"
+  TAILS_VERSION: "6.18"
   WINDOWS_TARGET: "x86_64-pc-windows-msvc"
 
 jobs:
