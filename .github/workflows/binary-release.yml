@@ -1,4 +1,4 @@
-name: Release
+name: Binary-Release
 on:
   workflow_dispatch:
   push:
@@ -12,7 +12,6 @@ permissions:
 
 env:
   PROJECT_NAME: seedmixer
-  TAILS_VERSION: "6.18"
   WINDOWS_TARGET: "x86_64-pc-windows-msvc"
 
 jobs:
@@ -128,99 +127,3 @@ jobs:
           body_path: CHANGELOG.md
           generate_release_notes: true
           token: ${{ secrets.TOKEN }}
-  build-tails-iso:
-    runs-on: self-hosted
-    defaults:
-      run:
-        working-directory: rust
-
-    steps:
-      - name: Check out this repo
-        uses: actions/checkout@v3
-
-      # Install dependencies for building Tails (live-build, cdebootstrap, etc.)
-      - name: Install Tails build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y genisoimage syslinux-utils syslinux live-build cdebootstrap squashfs-tools xorriso curl make genisoimage syslinux-common pkg-config libssl-dev ruby rubygems virtinst psmisc git dpkg-dev rake libvirt-daemon-system dnsmasq-base ebtables faketime jq pigz qemu-system-x86 qemu-utils vagrant vagrant-libvirt vmdb2 qemu-kvm libvirt-daemon-system libvirt-clients libvirt-dev vagrant-libvirt bridge-utils
-
-      # Download tails iso
-      - name: download tails iso
-        run: |
-          wget https://download.tails.net/tails/stable/tails-amd64-${TAILS_VERSION}/tails-amd64-${TAILS_VERSION}.iso
-
-      # Create dirs for mount
-      - name: create directories for mounting
-        run: |
-          sudo mkdir -p /mnt/tails
-
-      # Mount ISO
-      - name: create directories for mounting
-        run: |
-          sudo mount tails-amd64-${TAILS_VERSION}.iso /mnt/tails -t iso9660 -o loop
-          sudo cp -rf /mnt/tails /tmp/
-
-      # Install Rust (if you haven’t set up a separate build step or Docker container)
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          profile: minimal
-
-      # Build the Rust binary
-      - name: Build Rust application
-        run: |
-          cargo build --release
-
-      # Extract Squash fs
-      - name: extract squash fs
-        run: |
-          sudo mkdir -p tails-squashfs
-          sudo unsquashfs -d ./tails-squashfs /tmp/tails/live/filesystem.squashfs
-
-      # Copy binary
-      - name: copy binary
-        run: |
-          sudo cp -rf target/release/${{ env.PROJECT_NAME }} ./tails-squashfs/usr/local/bin
-
-      # Rebuild Squash fs
-      - name: rebuild squash fs
-        run: |
-          sudo rm -rf /tmp/tails/live/filesystem.squashfs
-          sudo mksquashfs ./tails-squashfs /tmp/tails/live/filesystem.squashfs -comp xz -e boot
-
-      # Repackage ISO
-      - name: repackage iso
-        run: |
-          sudo genisoimage -o tails-${{ env.PROJECT_NAME }}.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "TAILS" /tmp/tails
-
-      # Make bootable
-      - name: make bootable
-        run: |
-          sudo isohybrid tails-${{ env.PROJECT_NAME }}.iso
-
-      # Assign versions
-      - name: Assign versions
-        run: |
-          mv tails-${{ env.PROJECT_NAME }}.iso ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso
-
-      #Generate hash for Tails Iso
-      - name: Generate Binary Hash
-        run: |
-          shasum -a 256 ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso >> ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.sha256
-
-      - name: Upload Tails Image
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
-        with:
-          name: ${{ github.ref_name }}
-          files: |
-            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso
-            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.sha256
-
-      # Cleanup
-      - name: cleanup
-        if: always()
-        run: |
-          sudo rm -rf ./tails-squashfs
-          sudo umount /mnt/tails
-          sudo rm -rf tails-amd64-${{ env.TAILS_VERSION }}.iso
