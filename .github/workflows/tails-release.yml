@@ -45,7 +45,8 @@ jobs:
       - name: create directories for mounting
         run: |
           sudo mount tails-amd64-${TAILS_VERSION}.iso /mnt/tails -t iso9660 -o loop
-          sudo rsync -a /mnt/tails /tmp/tails/
+          sudo mkdir -p /tmp/tails
+          sudo rsync -a /mnt/tails/ /tmp/tails/
 
       # Install Rust (if you haven’t set up a separate build step or Docker container)
       - name: Install Rust toolchain
