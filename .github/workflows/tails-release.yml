@@ -97,12 +97,12 @@ jobs:
       # Compress ISO with xz (best compression)
       - name: Compress Tails ISO
         run: |
-          xz -9 -k ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso
+                    gzip -9 -k ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso
           
       # Generate hash for compressed ISO
       - name: Generate Compressed ISO Hash
         run: |
-          shasum -a 256 ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.xz >> ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.xz.sha256
+          shasum -a 256 ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.gz >> ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.gz.sha256
 
 
       #Generate hash for Tails Iso
@@ -116,8 +116,8 @@ jobs:
         with:
           name: ${{ github.ref_name }}
           files: |
-            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.xz
-            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.xz.sha256
+            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.gz
+            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.gz.sha256
             ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.sha256
 
       # Cleanup
