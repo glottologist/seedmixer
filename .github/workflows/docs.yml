@@ -43,20 +43,11 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@nightly
 
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.5
-
       - name: Install mdbook
-        env:
-          SCCACHE_GHA_ENABLED: "true"
-          RUSTC_WRAPPER: "sccache"
         run: cargo install mdbook --locked --version 0.4.35
         shell: bash
 
       - name: Build Docs in English
-        env:
-          SCCACHE_GHA_ENABLED: "true"
-          RUSTC_WRAPPER: "sccache"
         run: mdbook build -d book
 
       - name: Deploy to Netlify
