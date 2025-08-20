@@ -13,7 +13,6 @@ permissions:
 env:
   PROJECT_NAME: seedmixer
   TAILS_VERSION: "6.18"
-  RUST_TARGET: "x86_64-unknown-linux-gnu"
 
 jobs:
   build-tails-iso:
@@ -54,13 +53,9 @@ jobs:
         with:
           profile: minimal
 
-      # Install musl target
-      - name: Install musl target
-        run: rustup target add ${{ env.RUST_TARGET }}
-
-            # Build the Rust binary
-      - name: Build Rust application (static linking)
-        run: cargo build --release --target ${{ env.RUST_TARGET }}
+      # Build the Rust binary
+      - name: Build Rust application
+        run: cargo build --release
 
       # Extract Squash fs
       - name: extract squash fs
@@ -71,7 +66,7 @@ jobs:
       # Copy binary
       - name: copy binary
         run: |
-          sudo cp -rf target/${{ env.RUST_TARGET }}/release/${{ env.PROJECT_NAME }} ./tails-squashfs/usr/local/bin
+          sudo cp -rf target/release/${{ env.PROJECT_NAME }} ./tails-squashfs/usr/local/bin
 
       # Rebuild Squash fs
       - name: rebuild squash fs
@@ -117,6 +112,7 @@ jobs:
           name: ${{ github.ref_name }}
           files: |
             ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.gz
+            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso
             ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.gz.sha256
             ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.sha256
 
