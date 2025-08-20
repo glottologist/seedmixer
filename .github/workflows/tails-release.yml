@@ -112,28 +112,25 @@ jobs:
           shasum -a 256 tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.* \
             > tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.SHA256
 
-      # Upload only the split parts + the checksum file
-      - name: Upload Tails split volumes
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
-        with:
-          name: ${{ github.ref_name }}
-          body: |
-            **Split archive instructions**
-
-            Download `*.iso.7z.001` (your browser will fetch the rest of the parts). Then extract with 7-Zip / p7zip:
-
-            ```
-            7z x tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.001
-            ```
-
-            Verify integrity:
-            ```
-            shasum -a 256 -c tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.SHA256
-            ```
-          files: |
-            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.*
-            ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.SHA256
+- name: Upload Tails split volumes
+  if: startsWith(github.ref, 'refs/tags/')
+  uses: softprops/action-gh-release@v2
+  with:
+    name: ${{ github.ref_name }}
+    body: |
+      **Split archive instructions**
+      Download `*.iso.7z.001` (your browser will fetch the rest).
+      Extract:
+      ```
+      7z x tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.001
+      ```
+      Verify:
+      ```
+      shasum -a 256 -c tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.SHA256
+      ```
+    files: |
+      ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.0*
+      ${{ github.workspace }}/rust/tails-amd64-${{ env.TAILS_VERSION }}-${{ env.PROJECT_NAME }}-${{ github.ref_name }}.iso.7z.SHA256
 
       # Cleanup
       - name: cleanup
