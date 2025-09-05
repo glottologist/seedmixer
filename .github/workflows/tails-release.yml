@@ -13,7 +13,7 @@ permissions:
 
 env:
   PROJECT_NAME: seedmixer
-  TAILS_VERSION: "6.18"
+  TAILS_VERSION: "6.19"
 
 jobs:
   build-tails-iso:
