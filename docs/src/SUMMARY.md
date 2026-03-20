@@ -1,25 +1,25 @@
 # Summary
 
 [Introduction](./introduction.md)
-- [Supported languages](./supportedlanguages.md)
+- [Supported Languages](./supportedlanguages.md)
 
 # Installation
 
 - [Installation](./installation/installation.md)
   - [TailsOS](./installation/tailsos.md)
   - [Binaries](./installation/binaries.md)
-  - [Building from source](./installation/source.md)
+  - [Building from Source](./installation/source.md)
 
 # Usage
 
 - [Usage](./usage/usage.md)
   - [Pins](./usage/pins.md)
 
-## Non-encrypted Shares
+## Non-Encrypted Shares
 
 - [Non-Encrypted Shares](./usage/non-encrypted-shares/non-encrypted-shares.md)
-  - [Mixing](./non-encrypted-shares/mixing.md)
-  - [Unmixing](./non-encrypted-shares/mixing.md)
+  - [Mixing](./usage/non-encrypted-shares/mixing.md)
+  - [Unmixing](./usage/non-encrypted-shares/unmixing.md)
 
 ## Encrypted Shares
 
@@ -30,6 +30,27 @@
   - [Encryption Phrase](./usage/encrypted-shares/encryption-phrase/encryption-phrase.md)
     - [Mixing](./usage/encrypted-shares/encryption-phrase/mixing.md)
     - [Unmixing](./usage/encrypted-shares/encryption-phrase/unmixing.md)
+
+# CLI Reference
+
+- [Command Reference](./reference/cli-reference.md)
+
+# Architecture
+
+- [System Architecture](./reference/architecture.md)
+- [Security Model](./guides/security-model.md)
+
+# API Reference
+
+- [Module Overview](./api/overview.md)
+- [Core Types](./api/core-types.md)
+- [Traits](./api/traits.md)
+- [Error Types](./api/errors.md)
+
+# Guides
+
+- [Troubleshooting](./guides/troubleshooting.md)
+- [Contributing](./guides/contributing.md)
 
 # Ancillaries
 
@@ -47,5 +68,3 @@
 
 - [Installation](./videos/installation.md)
 - [Usage](./videos/usage.md)
- 
-

@@ -1,4 +1,4 @@
-# Intallation
+# Installation
 
 There are three methods of installation/usage: tailos, binaries, and source. The recommended way is using the seedmixer bundled with [TailsOS](https://tails.net/).
 
